@@ -31,6 +31,7 @@ namespace EducationalPratice_Task_1
 
             List<List<int>> all_variants= new List<List<int>>(n);//Список всех элементов
             Queue<List<int>> queueVariant = new Queue<List<int>>();//Очередь для разбора всех вариантов
+            List<List<int>> finaList = new List<List<int>>();
             all_variants.Add(particles);//Добавляем в все варианты частицы
             queueVariant.Enqueue(particles);//Добавление частиц в очередь
              /* Реализация поиска в ширину */
@@ -60,26 +61,35 @@ namespace EducationalPratice_Task_1
                         }
                         else
                         {
-                            if (current[i] > 0 && current[j] > 0 && (destr[i][j] || destr[j][i]))
+                            if (current[i] > 0 && current[j] > 0 && (destr[i,j] || destr[j,i]))
                             {
                                 //Реагирование частиц, но не обязательно
                                 var next = current;//Копирование текущего состояния
-                                if (destr[i][j])
-                                    next[i]--;
-                                if (destr[j][i])
-                                    next[j]--;
-                                isFinal = false;
-                                if (all.Contains(next) == false)//Проверка на существование такого варианта
+                                if (destr[i,j])
                                 {
-                                    all.Add(next);//Добавленяем в конечное финальную матрицу
-                                    q.Enqueue(next);//Добавляем в очередь состояний
+                                    next[i]--;
+                                }
+                                if (destr[j,i])
+                                {
+                                    next[j]--;
+                                }
+
+                                finalize = false;
+
+                                if (!all_variants.Contains(next))//Проверка на существование такого варианта
+                                {
+                                    all_variants.Add(next);//Добавленяем в конечное финальную матрицу
+                                    queueVariant.Enqueue(next);//Добавляем в очередь состояний
                                 }
                             }
                         }
                     }
                 }
 
+                if (finalize == true)
+                    finaList.Add(current);
             }
+            Console.WriteLine(finaList.Count);
 
         }
     }
