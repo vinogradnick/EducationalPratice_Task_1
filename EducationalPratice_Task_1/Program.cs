@@ -34,7 +34,10 @@ namespace EducationalPratice_Task_1
             all_variants.Add(particles);//Добавляем в все варианты частицы
             queueVariant.Enqueue(particles);//Добавление частиц в очередь
              /* Реализация поиска в ширину */
-           
+            while (queueVariant.Count!=0)//Проверка очереди на пустотуы
+            {
+                
+            }
 
         }
     }
