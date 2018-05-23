@@ -38,7 +38,17 @@ namespace EducationalPratice_Task_1
             {
                 List<int> current = queueVariant.Peek();//Получаем текущее состояние
                 queueVariant.Dequeue();//Удаляем элемент из очереди
-                bool finalize = false;//Проверка что все варианты рассмотрены
+                bool finalize = true;//Проверка что все варианты рассмотрены
+                for (int i = 0; i < n; i++)
+                {
+                    for (int j = 0; j < n; j++)
+                    {
+                        if (i == j)//Проверка на реагирование частиц
+                        {
+
+                        }
+                    }
+                }
 
             }
 
