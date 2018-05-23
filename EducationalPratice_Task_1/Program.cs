@@ -46,6 +46,17 @@ namespace EducationalPratice_Task_1
                         if (i == j)//Проверка на реагирование частиц
                         {
 
+                            if (current[i] >= 2 && destr[i,i])//Проверка что частица себя уничтожает
+                            {
+                                var next = current;
+                                next[i] -= 2;
+                                finalize = false;//Переход произошел
+                                if (all_variants.Contains(next) == false)//Проверка на существование такого варианта
+                                {
+                                    all_variants.Add(next);//Добавленяем в конечное финальную матрицу
+                                    queueVariant.Enqueue(next);//Добавляем в очередь состояний
+                                }
+                            }
                         }
                     }
                 }
