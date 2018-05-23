@@ -11,6 +11,24 @@ namespace EducationalPratice_Task_1
         static void Main(string[] args)
         {
             int n = Convert.ToInt32(Console.ReadLine());
+
+            List<int> particles = new List<int>(n);//Список частиц
+
+            for (int i = 0; i < n; i++)//Заполнение частиц
+                particles.Add(Convert.ToInt32(Console.ReadLine()));
+            
+            bool[,] destr = new bool[n,n];//Массив для удаления
+
+
+            for (int i = 0; i < destr.GetLength(1); i++)
+            {
+                for (int j = 0; j < destr.GetLength(0); j++)
+                {
+                    int value = Convert.ToInt32(Console.ReadLine());
+                    destr[i, j] = (value != 0);
+                }
+            }
+
         }
     }
 }
