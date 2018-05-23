@@ -91,6 +91,13 @@ namespace EducationalPratice_Task_1
             }
             Console.WriteLine(finaList.Count);
 
+            foreach (var final in finaList)
+            {
+                for (int i = 0; i < final.Count; i++)
+                {
+                    Console.WriteLine(final[i]+" ");
+                }
+            }
         }
     }
 }
