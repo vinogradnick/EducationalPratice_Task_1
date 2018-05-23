@@ -29,6 +29,13 @@ namespace EducationalPratice_Task_1
                 }
             }
 
+            List<List<int>> all_variants= new List<List<int>>(n);//Список всех элементов
+            Queue<List<int>> queueVariant = new Queue<List<int>>();//Очередь для разбора всех вариантов
+            all_variants.Add(particles);//Добавляем в все варианты частицы
+            queueVariant.Enqueue(particles);//Добавление частиц в очередь
+             /* Реализация поиска в ширину */
+           
+
         }
     }
 }
