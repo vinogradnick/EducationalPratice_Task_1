@@ -19,7 +19,7 @@ namespace EducationalPratice_Task_1
             
             bool[,] destr = new bool[n,n];//Массив для удаления
 
-
+            //Заполняем массив частицами
             for (int i = 0; i < destr.GetLength(1); i++)
             {
                 for (int j = 0; j < destr.GetLength(0); j++)
