@@ -36,7 +36,10 @@ namespace EducationalPratice_Task_1
              /* Реализация поиска в ширину */
             while (queueVariant.Count!=0)//Проверка очереди на пустотуы
             {
-                
+                List<int> current = queueVariant.Peek();//Получаем текущее состояние
+                queueVariant.Dequeue();//Удаляем элемент из очереди
+                bool finalize = false;//Проверка что все варианты рассмотрены
+
             }
 
         }
