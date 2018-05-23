@@ -10,6 +10,7 @@ namespace EducationalPratice_Task_1
     {
         static void Main(string[] args)
         {
+            int n = Convert.ToInt32(Console.ReadLine());
         }
     }
 }
