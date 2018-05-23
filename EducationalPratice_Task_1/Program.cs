@@ -58,6 +58,24 @@ namespace EducationalPratice_Task_1
                                 }
                             }
                         }
+                        else
+                        {
+                            if (current[i] > 0 && current[j] > 0 && (destr[i][j] || destr[j][i]))
+                            {
+                                //Реагирование частиц, но не обязательно
+                                var next = current;//Копирование текущего состояния
+                                if (destr[i][j])
+                                    next[i]--;
+                                if (destr[j][i])
+                                    next[j]--;
+                                isFinal = false;
+                                if (all.Contains(next) == false)//Проверка на существование такого варианта
+                                {
+                                    all.Add(next);//Добавленяем в конечное финальную матрицу
+                                    q.Enqueue(next);//Добавляем в очередь состояний
+                                }
+                            }
+                        }
                     }
                 }
 
