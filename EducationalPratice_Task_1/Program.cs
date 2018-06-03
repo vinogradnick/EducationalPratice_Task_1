@@ -10,94 +10,50 @@ namespace EducationalPratice_Task_1
     {
         static void Main(string[] args)
         {
-            int n = Convert.ToInt32(Console.ReadLine());
-
+            int n = Convert.ToInt32(Console.ReadLine());//Количество частиц
+            bool[,] destr = new bool[n, n];//Массив для удаления
             List<int> particles = new List<int>(n);//Список частиц
-
             for (int i = 0; i < n; i++)//Заполнение частиц
-                particles.Add(Convert.ToInt32(Console.ReadLine()));
-            
-            bool[,] destr = new bool[n,n];//Массив для удаления
+                particles.Add(Convert.ToInt32(Console.ReadLine()));//Типы частиц
+
+
+
 
             //Заполняем массив частицами
-            for (int i = 0; i < destr.GetLength(1); i++)
+            for (int i = 0; i <n; i++)
             {
-                for (int j = 0; j < destr.GetLength(0); j++)
+                for (int j = 0; j <n; j++)
                 {
                     int value = Convert.ToInt32(Console.ReadLine());
                     destr[i, j] = (value != 0);
                 }
+                Console.WriteLine();
             }
+            List<List<int>> FinalList = new List<List<int>>(n);
+            Queue<List<int>> QueueParts = new Queue<List<int>>(n);//Очередь частиц
 
-            List<List<int>> all_variants= new List<List<int>>(n);//Список всех элементов
-            Queue<List<int>> queueVariant = new Queue<List<int>>();//Очередь для разбора всех вариантов
-            List<List<int>> finaList = new List<List<int>>();
-            all_variants.Add(particles);//Добавляем в все варианты частицы
-            queueVariant.Enqueue(particles);//Добавление частиц в очередь
-             /* Реализация поиска в ширину */
-            while (queueVariant.Count!=0)//Проверка очереди на пустотуы
+            List<List<int>> All_States = new List<List<int>>();//Набор всех состояний
+                
+            QueueParts.Enqueue(particles);//Добавляем частицы в очередь
+            All_States.Add();
+
+            
+        }
+
+        static void Print(List<List<int>> list)
+        {
+            foreach (var item in list)
             {
-                List<int> current = queueVariant.Peek();//Получаем текущее состояние
-                queueVariant.Dequeue();//Удаляем элемент из очереди
-                bool finalize = true;//Проверка что все варианты рассмотрены
-                for (int i = 0; i < n; i++)
-                {
-                    for (int j = 0; j < n; j++)
-                    {
-                        if (i == j)//Проверка на реагирование частиц
-                        {
-
-                            if (current[i] >= 2 && destr[i,i])//Проверка что частица себя уничтожает
-                            {
-                                var next = current;
-                                next[i] -= 2;
-                                finalize = false;//Переход произошел
-                                if (all_variants.Contains(next) == false)//Проверка на существование такого варианта
-                                {
-                                    all_variants.Add(next);//Добавленяем в конечное финальную матрицу
-                                    queueVariant.Enqueue(next);//Добавляем в очередь состояний
-                                }
-                            }
-                        }
-                        else
-                        {
-                            if (current[i] > 0 && current[j] > 0 && (destr[i,j] || destr[j,i]))
-                            {
-                                //Реагирование частиц, но не обязательно
-                                var next = current;//Копирование текущего состояния
-                                if (destr[i,j])
-                                {
-                                    next[i]--;
-                                }
-                                if (destr[j,i])
-                                {
-                                    next[j]--;
-                                }
-
-                                finalize = false;
-
-                                if (!all_variants.Contains(next))//Проверка на существование такого варианта
-                                {
-                                    all_variants.Add(next);//Добавленяем в конечное финальную матрицу
-                                    queueVariant.Enqueue(next);//Добавляем в очередь состояний
-                                }
-                            }
-                        }
-                    }
-                }
-
-                if (finalize == true)
-                    finaList.Add(current);
+                foreach (var number in item)
+                    Console.Write($"{number} ");
+                Console.WriteLine();
             }
-            Console.WriteLine(finaList.Count);
-
-            foreach (var final in finaList)
-            {
-                for (int i = 0; i < final.Count; i++)
-                {
-                    Console.WriteLine(final[i]+" ");
-                }
-            }
+        }
+        static void Print(List<int> list)
+        {
+            foreach (var item in list)
+                Console.Write($"{item} ");
+            Console.WriteLine();
         }
     }
 }
