@@ -6,13 +6,16 @@ namespace EducationalPratice_Task_1
 {
     class Program
     {
-        private const int MAXN = 4;
+        private const int MAX_N = 4;
         private const int MAX_A = 3;
         private static int n;
-       static  bool[,] destr = new bool[MAXN, MAXN];//Массив для удаления
-       static bool[,,,] dp =new bool[MAX_A,MAX_A,MAX_A,MAX_A];
+        static  bool[,] destr = new bool[MAX_N, MAX_N];//Массив для удаления
+        static bool[,,,] dp =new bool[MAX_A,MAX_A,MAX_A,MAX_A];
         static List<List<int>> ans = new List<List<int>>();
-
+        /// <summary>
+        /// Реализация поиска в ширину
+        /// </summary>
+        /// <param name="arr"></param>
         static void Bfs(int[] arr)
         {
             if(dp[arr[0], arr[1], arr[2], arr[3]]) // Если уже посещали вершину
@@ -22,10 +25,7 @@ namespace EducationalPratice_Task_1
             for (int i = 0; i < n; i++) // Бежим по взаимодействиям
                 if(arr[i] > 0) // Если частицы данного вида ещё есть
                     for (int j = 0; j < n; j++) // Проверяем их на взаимодействие с другими
-
-                        if (destr[i, j] && arr[j] > 0 && (i != j || i == j && arr[j] > 1)
-                        ) // Если взаимодействие есть и есть что уничтожать
-
+                        if (destr[i, j] && arr[j] > 0 && (i != j || i == j && arr[j] > 1)) // Если взаимодействие есть и есть что уничтожать
                         {
                             // Доп проверка (если частицы одного типа)
                             arr[j]--;
@@ -45,7 +45,7 @@ namespace EducationalPratice_Task_1
         static void Main(string[] args)
         {
             n = Convert.ToInt32(Console.ReadLine());
-           int [] arr = new int[MAXN];
+            int [] arr = new int[MAX_N];
             string part = Console.ReadLine();
             int k = 0;
 
@@ -55,7 +55,7 @@ namespace EducationalPratice_Task_1
                 k+=2;
             }
 
-            for (int i = n; i < MAXN; i++)
+            for (int i = n; i < MAX_N; i++)
                 arr[i] = 0;
 
             //Заполняем массив частицами
