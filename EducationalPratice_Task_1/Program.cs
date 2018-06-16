@@ -6,12 +6,12 @@ namespace EducationalPratice_Task_1
 {
     class Program
     {
-        private const int MAX_N = 4;
-        private const int MAX_A = 3;
-        private static int n;
+        private const int MAX_N = 4;//Максимальное количество частиц
+        private const int MAX_A = 3;//Максимальное количество типов частиц
+        private static int n; //Переменная для хранения количества частиц
         static  bool[,] destr = new bool[MAX_N, MAX_N];//Массив для удаления
-        static bool[,,,] dp =new bool[MAX_A,MAX_A,MAX_A,MAX_A];
-        static List<List<int>> ans = new List<List<int>>();
+        static bool[,,,] dp =new bool[MAX_A,MAX_A,MAX_A,MAX_A];//Массив для перебора вершин графа
+        static List<List<int>> FinalStates = new List<List<int>>();
         /// <summary>
         /// Реализация поиска в ширину
         /// </summary>
@@ -39,7 +39,7 @@ namespace EducationalPratice_Task_1
                 List<int> cur = new List<int>(n);
                 for (int i = 0; i < n; i++)
                     cur.Add(arr[i]);
-                ans.Add(cur);
+                FinalStates.Add(cur);
             }
         }
         static void Main(string[] args)
@@ -71,12 +71,12 @@ namespace EducationalPratice_Task_1
                 }
             }
 
-           Bfs(arr);
-            Console.WriteLine(ans.Count);
-            foreach (var cur in ans)
+            Bfs(arr);//Запускаем алгоритма
+            Console.WriteLine(FinalStates.Count);//Печать количества вариантов
+            foreach (var cur in FinalStates)
             {
                 foreach (var value in cur)
-                    Console.Write("{0} ", value);
+                    Console.Write("{0} ", value); 
                 Console.WriteLine();
             }
         }
